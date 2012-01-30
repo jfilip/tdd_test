@@ -2,13 +2,9 @@
 /**
  * Sorty -- a sorting library that sorts! (PHPUnit test)
  *
- * Requirements:
- *  1. Must be able to sort in ascending or descending order
- *  2. Must be able to sort numeric or text-based data
- *  3. Must be able to sort an 2 dimensional array based on a specific value in the 2nd dimension
- *
- * NOTES:
- *  3.
+ * @author    Justin Filip <jfilip@gmail.com>
+ * @copyright 2012 Justin Filip -- https://github.com/jfilip
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 
