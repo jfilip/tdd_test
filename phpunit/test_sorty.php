@@ -197,6 +197,14 @@ class SortyTest extends PHPUnit_Framework_TestCase {
     /**
      * @dataProvider ascNumberProvider
      */
+    public function test1dInvalidSortParameter($a, $b) {
+        $this->assertFalse(sorts_sort($a, 'up'));
+        $this->assertFalse(sorts_sort($a, -1));
+    }
+
+    /**
+     * @dataProvider ascNumberProvider
+     */
     public function testNumberSortAscDefaultDirection($a, $b) {
         $this->assertEquals($b, sorts_sort($a));
     }
@@ -242,6 +250,22 @@ class SortyTest extends PHPUnit_Framework_TestCase {
     /**
      * @dataProvider asc2dArrayFirstFieldProvider
      */
+    public function test2dArrayInvalidSortField($a, $b) {
+        $this->assertFalse(sorts_sort($a, SORTS_SORT_DESC, 2));
+        $this->assertFalse(sorts_sort($a, SORTS_SORT_ASC, 'date'));
+    }
+
+    /**
+     * @dataProvider asc2dArrayFirstFieldProvider
+     */
+    public function test2dArrayInvalidSortDirection($a, $b) {
+        $this->assertFalse(sorts_sort($a, 'up'));
+        $this->assertFalse(sorts_sort($a, -1));
+    }
+
+    /**
+     * @dataProvider asc2dArrayFirstFieldProvider
+     */
     public function test2dArraySortAscSpecifyDirectionAndDefaultSortField($a, $b) {
         $this->assertEquals($b, sorts_sort($a, SORTS_SORT_ASC));
     }
@@ -258,12 +282,5 @@ class SortyTest extends PHPUnit_Framework_TestCase {
     */
     public function test2dArraySortDescSpecifyDirectionAndSpecifySortField($a, $b) {
         $this->assertEquals($b, sorts_sort($a, SORTS_SORT_DESC, 1));
-    }
-
-    /**
-     * @dataProvider desc2dArraySecondFieldProvider
-     */
-    public function test2dArrayInvalidSortField($a, $b) {
-        $this->assertFalse(sorts_sort($a, SORTS_SORT_DESC, 2));
     }
 }
