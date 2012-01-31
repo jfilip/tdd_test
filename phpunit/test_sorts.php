@@ -11,7 +11,7 @@
 require_once dirname(dirname(__FILE__)).'/libsorts.php';
 
 
-class SortyTest extends PHPUnit_Framework_TestCase {
+class SortsTest extends PHPUnit_Framework_TestCase {
     /**
      * Define an array of numeric data for sorting in ascending direction
      */
