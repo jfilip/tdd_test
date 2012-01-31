@@ -1,6 +1,6 @@
 <?php
 /**
- * Sorty -- a sorting library that sorts! (PHPUnit test)
+ * SORTS -- Sorting Operation Redundant Teaching System (PHPUnit tests)
  *
  * @author    Justin Filip <jfilip@gmail.com>
  * @copyright 2012 Justin Filip -- https://github.com/jfilip
@@ -9,7 +9,7 @@
 
 
 require_once 'PHPUnit/Framework.php';
-require_once dirname(dirname(__FILE__)).'/libsorty.php';
+require_once dirname(dirname(__FILE__)).'/libsorts.php';
 
 
 class SortyTest extends PHPUnit_Framework_TestCase {
@@ -185,28 +185,34 @@ class SortyTest extends PHPUnit_Framework_TestCase {
     public function testEmptySort() {
         $array = array();
 
-        $this->assertEquals($array, sorty_sort($array));
+        $this->assertEquals($array, sorts_sort($array));
+    }
+
+    public function testNonArrayParameter() {
+        $this->assertFalse(sorts_sort(123456789));
+        $this->assertFalse(sorts_sort('sorting data'));
+        $this->assertFalse(sorts_sort(99.9999));
     }
 
     /**
      * @dataProvider ascNumberProvider
      */
     public function testNumberSortAscDefaultDirection($a, $b) {
-        $this->assertEquals($b, sorty_sort($a));
+        $this->assertEquals($b, sorts_sort($a));
     }
 
     /**
      * @dataProvider ascNumberProvider
      */
     public function testNumberSortAscSpecifyDirection($a, $b) {
-        $this->assertEquals($b, sorty_sort($a, SORTY_SORT_ASC));
+        $this->assertEquals($b, sorts_sort($a, SORTS_SORT_ASC));
     }
 
     /**
      * @dataProvider descNumberProvider
      */
     public function testNumberSortDescSpecifyDirection($a, $b) {
-        $this->assertEquals($b, sorty_sort($a, SORTY_SORT_DESC));
+        $this->assertEquals($b, sorts_sort($a, SORTS_SORT_DESC));
     }
 
     /**
@@ -216,48 +222,48 @@ class SortyTest extends PHPUnit_Framework_TestCase {
      * @dataProvider descNumberProvider
      */
     public function testNumberSortDescDefaultDirection($a, $b) {
-        $this->assertFalse($b == sorty_sort($a));
+        $this->assertFalse($b == sorts_sort($a));
     }
 
     /**
      * @dataProvider ascAlphaProvider
      */
     public function testAlphaSortAscSpecifyDirection($a, $b) {
-        $this->assertEquals($b, sorty_sort($a, SORTY_SORT_ASC));
+        $this->assertEquals($b, sorts_sort($a, SORTS_SORT_ASC));
     }
 
     /**
      * @dataProvider descAlphaProvider
      */
     public function testAlphaSortDescSpecifyDirection($a, $b) {
-        $this->assertEquals($b, sorty_sort($a, SORTY_SORT_DESC));
+        $this->assertEquals($b, sorts_sort($a, SORTS_SORT_DESC));
     }
 
     /**
      * @dataProvider asc2dArrayFirstFieldProvider
      */
     public function test2dArraySortAscSpecifyDirectionAndDefaultSortField($a, $b) {
-        $this->assertEquals($b, sorty_sort($a, SORTY_SORT_ASC));
+        $this->assertEquals($b, sorts_sort($a, SORTS_SORT_ASC));
     }
 
     /**
      * @dataProvider asc2dArraySecondFieldProvider
      */
     public function test2dArraySortAscSpecifyDirectionAndSpecifySortField($a, $b) {
-        $this->assertEquals($b, sorty_sort($a, SORTY_SORT_ASC, 1));
+        $this->assertEquals($b, sorts_sort($a, SORTS_SORT_ASC, 1));
     }
 
     /**
     * @dataProvider desc2dArraySecondFieldProvider
     */
     public function test2dArraySortDescSpecifyDirectionAndSpecifySortField($a, $b) {
-        $this->assertEquals($b, sorty_sort($a, SORTY_SORT_DESC, 1));
+        $this->assertEquals($b, sorts_sort($a, SORTS_SORT_DESC, 1));
     }
 
     /**
      * @dataProvider desc2dArraySecondFieldProvider
      */
     public function test2dArrayInvalidSortField($a, $b) {
-        $this->assertFalse(sorty_sort($a, SORTY_SORT_DESC, 2));
+        $this->assertFalse(sorts_sort($a, SORTS_SORT_DESC, 2));
     }
 }
